@@ -12,6 +12,11 @@ export const connectDB = async () => {
     return;
   }
 
+  // Prevent duplicate connections in serverless environments
+  if (mongoose.connection.readyState >= 1) {
+    return mongoose.connection;
+  }
+
   try {
     const conn = await mongoose.connect(mongoUri);
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);

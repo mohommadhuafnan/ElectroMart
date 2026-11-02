@@ -35,4 +35,9 @@ process.on('SIGTERM', () => {
   });
 });
 
-startServer();
+// Start listening only in standalone/local mode (Vercel serverless manages its own listener)
+if (!process.env.VERCEL) {
+  startServer();
+}
+
+export default app;
