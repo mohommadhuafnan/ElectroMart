@@ -1,197 +1,80 @@
-# ⚡ ElectroMart - Sri Lanka E-Commerce Platform
+# ⚡ ElectroMart – Sri Lanka Electrical & Electronics E-Commerce Store
 
-> Academic Group Project | MERN Stack E-Commerce Platform for Electrical and Electronic Products in Sri Lanka.
+> **Academic Project** &bull; Course: **CIS 22032 E-Commerce**  
+> **Faculty of Technology**, South Eastern University of Sri Lanka (SEUSL)  
+> **Technology Stack**: MERN (MongoDB, Express.js, React, Node.js)  
+> **UI Theme Reference**: Exact UI/UX & Color Theme from [MetaBuy.lk](https://metabuy.lk/) (`#FB7C00` Vibrant Signature Orange, Radios WooCommerce Design System)
 
 ---
 
 ## 📖 Project Overview
-**ElectroMart** is an e-commerce platform designed to bridge the gap between engineering students, hobbyists, industrial technicians, and authentic electronic component distributors across Sri Lanka. It provides access to microcontrollers (Arduino, ESP32, Raspberry Pi), IoT sensors, lab power supplies, and discrete electrical hardware with localized currency (LKR), shipping options, and inventory management.
+**ElectroMart** is an online electrical and electronic retail e-commerce storefront for customers in Sri Lanka. It allows customers to browse verified products, compare specifications, add items to a persistent shopping cart and wishlist, order with **Cash on Delivery (COD)** across all 25 districts of Sri Lanka, and track orders in real-time.
+
+### 🎨 Design System & Theme (Exact Match to MetaBuy.lk)
+- **Signature Brand Color**: `#FB7C00` (Vibrant Orange), `#E06D00` (Hover), `#F53B00` (Sale Red-Orange)
+- **Dark Neutrals**: `#1A1F36` (Slate Navy), `#111827` (Heading Charcoal), `#11141e` (Footer Dark)
+- **Badges & Accents**: `#29B68E` (In-stock Green), `#FFF7ED` (Soft Orange Tint)
+- **Typography**: `Outfit` (Headings, Prices, Brand) & `Inter` (Body, UI, Categories)
+- **Custom Brand Logo**: Vector SVG hex-shield emblem with electric lightning bolt and typography *"ElectroMart – Elevating Your Everyday"*.
 
 ---
 
-## 🛠️ Technology Stack
+## 🏷️ Core Categories (Same as MetaBuy.lk & Proposal)
+1. 🔌 **Electricals**: Insulation wiring tapes, sockets, switches, extension units, circuit accessories.
+2. 🌀 **Fan**: Stand fans, ceiling fans, wall fans (Delmege, Wicks, Standard Stellar).
+3. 🍳 **Kitchen Appliance**: Electric ovens, double-burner gas stoves, infrared cookers, electric kettles.
+4. 💡 **LED**: Dual-direction architectural wall lamps, garden facade lamps, emergency LED bulbs.
+5. 🍚 **Rice Cooker**: Automatic 1.8L, 2.2L, and 2.8L rice cookers with steamer trays.
+6. ☀️ **Solar**: Monocrystalline solar ceiling lights, 50W–200W solar street lamps, solar fence lights.
+7. 📺 **TV**: Android & Google Smart TVs from 32" to 55" 4K UHD (Konka, OREL, FLiCo).
 
-| Layer | Technologies |
+---
+
+## 🚀 Implemented Frontend Modules & Pages
+
+| Page / Route | Features |
 | :--- | :--- |
-| **Frontend** | React 18, Vite, React Router DOM, Axios, Lucide React, Modern Vanilla CSS Design Tokens |
-| **Backend** | Node.js, Express.js (ES Modules), Mongoose, Helmet, Morgan, CORS, Cookie Parser |
-| **Database** | MongoDB (NoSQL) |
-| **Authentication & Security** | JWT (JSON Web Tokens), bcryptjs, Helmet HTTP headers, CORS validation |
-| **Documentation & Collaboration** | GitHub Flow, Markdown Architecture Docs, express-validator |
+| **`HomePage` (`/`)** | Hero split section, 7-category animated slider with hover effects, 4 promotional banners, featured product tabs, live countdown flash deal, Sri Lanka trust badges, testimonials. |
+| **`ShopPage` (`/shop`)** | Category filter sidebar, keyword search, price slider (LKR 1,000–200,000), sale-only filter, sorting options, product cards with instant Add-to-Cart and Wishlist toggles. |
+| **`ProductDetailPage` (`/product/:id`)** | Multi-image thumbnail gallery, stock status, official warranty badge, quantity selector, "Add to Cart" and "Buy Now", specifications table, warranty details, and related products carousel. |
+| **`CartPage` (`/cart`)** | Quantity controls, remove item, coupon promo voucher code (`ELECTRO10`, `WELCOME10`, `FREESHIP`), real-time Sri Lanka delivery fee computation, order summary. |
+| **`CheckoutPage` (`/checkout`)** | Customer information form, Sri Lanka 25-district selector, Cash on Delivery (COD) / Card / Bank transfer selector, order confirmation modal with generated Order Reference ID. |
+| **`TrackOrderPage` (`/track-order`)** | Interactive 5-step visual tracking timeline (*Order Placed* &rarr; *Packed* &rarr; *Dispatched with Courier* &rarr; *Out for Delivery* &rarr; *Delivered*), courier code, and WhatsApp helpline. |
+| **`WishlistPage` (`/wishlist`)** | Saved favorite items list, in-stock badges, quick "Move to Cart", and "Add All to Cart". |
+| **`AuthPage` (`/login`, `/register`)** | Tabbed Sign In & Register forms with validation and one-click Customer & Admin Demo credential fill shortcuts. |
+| **`OrdersPage` (`/orders`, `/account`)** | Customer order history with order reference IDs, delivery status badges, and direct tracking links. |
+| **`AboutPage` (`/about`)** | Company story, core guarantees, and South Eastern University of Sri Lanka (SEUSL) CIS 22032 coursework accreditation. |
+| **`ContactPage` (`/contact`)** | Vavuniya store location, phone / WhatsApp direct hotline (`+94 77 766 6961`), support email, customer service hours, and interactive inquiry form with toast feedback. |
+| **`AdminDashboardPage` (`/admin`)** | Administration preview portal fulfilling Proposal `FR11`–`FR14` with total revenue, order metrics, product inventory management table, and order status updater. |
 
 ---
 
-## 📂 Project Architecture
+## 💻 How to Run the Frontend
 
-```
-ElectroMart/
-├── frontend/                     # Client application (React + Vite)
-│   ├── public/                   # Public static files (favicon, manifest)
-│   ├── src/
-│   │   ├── assets/               # Media & brand graphics
-│   │   ├── components/
-│   │   │   ├── common/           # Generic buttons, inputs, loaders, modals
-│   │   │   ├── layout/           # Navbar, Footer, Sidebars
-│   │   │   └── products/         # Product cards, grids, rating filters
-│   │   ├── pages/
-│   │   │   ├── home/             # Homepage with live health check
-│   │   │   ├── products/         # Catalog & product detail pages
-│   │   │   ├── auth/             # Login, Registration, Password recovery
-│   │   │   ├── cart/             # Shopping cart & quantity management
-│   │   │   ├── checkout/         # Multi-step checkout & payment
-│   │   │   ├── orders/           # Order history & Sri Lanka courier tracking
-│   │   │   ├── wishlist/         # Saved favorite products
-│   │   │   └── admin/            # Store admin dashboard & management
-│   │   ├── layouts/              # Main page layouts
-│   │   ├── routes/               # AppRoutes navigation router
-│   │   ├── services/             # Axios API client instance & interceptors
-│   │   ├── context/              # Global state (Auth, Cart, Wishlist)
-│   │   ├── hooks/                # Custom React hooks
-│   │   ├── utils/                # Currency formatters, validation helpers
-│   │   ├── styles/               # Global design tokens & CSS system
-│   │   ├── App.jsx               # Root application component
-│   │   └── main.jsx              # Application bootstrap entry point
-│   ├── .env.example              # Frontend environment variables template
-│   ├── vite.config.js            # Vite build & proxy configuration
-│   └── package.json
-│
-├── backend/                      # Server application (Node.js + Express)
-│   ├── src/
-│   │   ├── config/               # Database connection & env configurations
-│   │   ├── controllers/          # API route controllers (health, auth, products)
-│   │   ├── models/               # Mongoose schemas (User, Product, Order)
-│   │   ├── routes/               # Express route endpoints
-│   │   ├── middleware/           # Auth JWT verification, 404, global error handling
-│   │   ├── services/             # Payment, email, business logic services
-│   │   ├── validators/           # Request schema validation (express-validator)
-│   │   ├── utils/                # Token generators, response formatting
-│   │   ├── app.js                # Express app setup & middleware stack
-│   │   └── server.js             # Server listener & database lifecycle
-│   ├── tests/                    # Backend unit & integration test suites
-│   ├── .env.example              # Backend environment variables template
-│   └── package.json
-│
-├── docs/                         # Team guides, API docs & architecture specs
-│   ├── ARCHITECTURE.md
-│   ├── API.md
-│   └── CONTRIBUTING.md
-├── .gitignore                    # Root git exclusion file
-└── README.md                     # Root project documentation
-```
-
----
-
-## 🚀 Getting Started & Installation
-
-### Prerequisites
-- **Node.js**: v18.0.0 or higher (Tested on Node v24+)
-- **npm**: v9.0.0 or higher
-- **MongoDB**: Local MongoDB community edition or MongoDB Atlas URI (optional for initial run)
-- **Git**
-
----
-
-### 1. Clone the Repository
+### 1. Navigate to the frontend directory
 ```bash
-git clone https://github.com/mohommadhuafnan/ElectroMart.git
-cd ElectroMart
+cd frontend
+```
+
+### 2. Install dependencies (if not already installed)
+```bash
+npm install
+```
+
+### 3. Start the Vite React development server
+```bash
+npm run dev
+```
+Open **`http://localhost:5173`** in your browser.
+
+### 4. Build for production
+```bash
+npm run build
 ```
 
 ---
 
-### 2. Backend Setup
-1. Open a terminal and navigate to the backend directory:
-   ```bash
-   cd backend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create your `.env` file from `.env.example`:
-   ```bash
-   # Windows PowerShell
-   Copy-Item .env.example .env
-
-   # Linux/macOS
-   cp .env.example .env
-   ```
-4. Start the backend development server:
-   ```bash
-   npm run dev
-   ```
-   *The backend will be live at `http://localhost:5000`.*
-   *Test API health check at `http://localhost:5000/api/health`.*
-
----
-
-### 3. Frontend Setup
-1. Open a second terminal and navigate to the frontend directory:
-   ```bash
-   cd frontend
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create your `.env` file from `.env.example`:
-   ```bash
-   # Windows PowerShell
-   Copy-Item .env.example .env
-
-   # Linux/macOS
-   cp .env.example .env
-   ```
-4. Start the Vite React development server:
-   ```bash
-   npm run dev
-   ```
-   *The frontend will be live at `http://localhost:5173`.*
-
----
-
-## 🩺 API Health Check Endpoint
-
-You can test that the backend is responding by visiting:
-- **URL**: `http://localhost:5000/api/health`
-- **Method**: `GET`
-- **Response Format**:
-  ```json
-  {
-    "status": "success",
-    "message": "ElectroMart API is running smoothly",
-    "timestamp": "2026-10-17T00:15:00.000Z",
-    "uptime": "15.22s",
-    "environment": "development",
-    "database": {
-      "status": "disconnected",
-      "name": null
-    },
-    "system": {
-      "nodeVersion": "v24.16.0",
-      "memoryHeapUsed": "18.45 MB"
-    }
-  }
-  ```
-
----
-
-## 👥 Group Collaboration Workflow (Git)
-
-1. **Branching Strategy**:
-   - `main`: Stable release branch.
-   - `develop`: Integration branch.
-   - `feature/<feature-name>`: Individual assigned tasks (e.g. `feature/user-auth`, `feature/product-filter`).
-2. **Commit Conventions**:
-   - `feat:` New feature
-   - `fix:` Bug fix
-   - `docs:` Documentation change
-   - `refactor:` Code restructuring
-3. **Pull Requests**:
-   - Create a Pull Request (PR) against `main` or `develop`.
-   - Never commit sensitive `.env` files or API keys.
-
----
-
-## 📄 License
-This project is developed for academic purposes under the ElectroMart student project team.
+## 👥 Project Team (Group 01)
+- **Abdul Basith** (`SEU/IS/22/ICT/024`) – Project Coordination & MERN Architecture
+- **Mohommadhu Afnan** (`SEU/IS/22/ICT/085`) – Frontend Development & UI/UX
+- **CIS 22032 E-Commerce** &bull; South Eastern University of Sri Lanka
